@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Showing Available Flights - Child State Component">
+        <p>Below is the list of available flights based on your search criteria:</p>
+        <lightning-layout horizontal-align="space">
+            <lightning-layout-item size="4" padding="around-small">
+                From City: {flightbookingState.value.fromCity}
+            </lightning-layout-item>
+            <lightning-layout-item size="4" padding="around-small">
+                To City: {flightbookingState.value.toCity}
+            </lightning-layout-item>
+            <lightning-layout-item size="4" padding="around-small">
+                Travel Date: {flightbookingState.value.travelDate}
+            </lightning-layout-item>
+        </lightning-layout>
+        <div style="margin-top: 2px;">
+            <lightning-datatable
+                key-field="flightName"
+                data={availableFlights}
+                columns={columns}
+                max-row-selection="1"
+                single-row-selection-mode="checkbox"
+                onrowselection={handleRowSelection}
+                selected-rows={selectedRows}>
+            </lightning-datatable>
+        </div>        
+    </lightning-card>
+</template>
