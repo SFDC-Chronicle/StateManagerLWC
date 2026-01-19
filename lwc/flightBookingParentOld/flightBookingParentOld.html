@@ -1,0 +1,39 @@
+<template>
+    <lightning-card title="Flight Parent Normal Event Component">
+        <template if:true={isFlightSelected}>
+            <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+                <p>Selected Flight Details</p>
+                <lightning-layout>
+                    <lightning-layout-item size="4" padding="around-small">
+                        <p>Flight Name: {selectedFlight.flightName}</p>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" padding="around-small">
+                        <p>Price: {selectedFlight.price}</p>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" padding="around-small">
+                        <p>Discount: {selectedFlight.discount}</p>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </div>
+        </template>        
+        <div class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+            <lightning-layout>
+                <lightning-layout-item size="4" padding="around-small">
+                    <lightning-input  type="text" label="From (City)" value={fromCity} onchange={handleFromCityChange}></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" padding="around-small">
+                    <lightning-input  type="text" label="To (City)" value={toCity} onchange={handleToCityChange}></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="4" padding="around-small">
+                    <lightning-input type="date" name="travelDate" label="Travel Date" value={travelDate} onchange={handleTravelDateChange}></lightning-input>
+                </lightning-layout-item>                
+            </lightning-layout>
+        </div>
+        <p slot="footer">
+            <lightning-button label="Show Available Flight" variant="brand" onclick={handleShowAvailable}></lightning-button>
+        </p>
+    </lightning-card>
+    <template if:true={showChildComponent}>
+        <c-available-flight-details-old from-city={fromCity} to-city={toCity} travel-date={travelDate} onflightselected={handleFlightSelected}></c-available-flight-details-old>
+    </template>
+</template>
